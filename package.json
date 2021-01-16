@@ -1,0 +1,23 @@
+{
+  "name": "spas-for-paws",
+  "version": "1.0.0",
+  "description": "a scheduling application for pet grooming.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tforde4623/Spas-for-Paws.git"
+  },
+  "author": "Kai, Mae, Sharon, Brian, and Tommy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tforde4623/Spas-for-Paws/issues"
+  },
+  "homepage": "https://github.com/tforde4623/Spas-for-Paws#readme",
+  "dependencies": {
+    "eslint": "^7.18.0",
+    "express": "^4.17.1"
+  }
+}
