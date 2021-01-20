@@ -1,34 +1,22 @@
 module.exports = function(sequelize, DataTypes) {
   const Pets = sequelize.define(
-    "Pets",
+    "Services",
     {
       category: {
         type: DataTypes.STRING,
         allowNull: false,
-        values: ["dog", "cat", "rabbit"],
+        values: ["Dog", "Cat", "Rabbit"],
         validate: {
           len: [1]
         }
       },
-      grooming_services: {
+      title: {
         type: DataTypes.STRING,
         allowNull: false,
         values: ["Haircut", "Shed Release", "Bath"],
         validate: {
           len: [1]
         }
-      },
-      appointment_time: {
-        type: DataTypes.DATE(6),
-        allowNull: true,
-        validate: {
-          len: [1]
-        }
-      },
-      comments: {
-        type: DataTypes.STRING,
-        allowNull: true,
-        len: [1, 255]
       }
     },
     {
@@ -39,10 +27,8 @@ module.exports = function(sequelize, DataTypes) {
   Pets.associate = function(models) {
     // We're saying that a Pets should belong to an User
     // A Pets can't be created without an User due to the foreign key constraint
-    Pets.belongsTo(models.User, {
-      foreignKey: {
-        allowNull: false
-      }
+    Pets.belongsTo(models.appointments, {
+      foreignKey: "service_id"
     });
   };
 
