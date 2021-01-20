@@ -35,15 +35,16 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     {
-      freezeTableName: true
+      freezeTableName: true,
+      underscored: true
     }
   );
 
   // Association to with the appointment table
-  Pets.associate = function(models) {
-    // We're saying that a Pets should belong to an User
-    // A Pets can't be created without an User due to the foreign key constraint
-    Pets.belongsTo(models.appointments, {
+  User.associate = function(models) {
+    // We're saying that a User should belong to an User
+    // A User can't be created without an User due to the foreign key constraint
+    User.belongsTo(models.appointments, {
       foreignKey: "user_id"
     });
   };

@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-  const Pets = sequelize.define(
+  const Appointments = sequelize.define(
     "Appointments",
     {
       appointment_time: {
@@ -26,9 +26,18 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     {
-      freezeTableName: true
+      freezeTableName: true,
+      underscored: true
     }
   );
 
-  return Pets;
+  // Association to with the appointment table
+  Appointments.associate = function(models) {
+    // We're saying that an Appointments should belong to an User
+    // An Appointments can't be created without an User due to the foreign key constraint
+    Appointments.hasMany(models.services);
+    Appointments.hasMany(models.user);
+  };
+
+  return Appointments;
 };
