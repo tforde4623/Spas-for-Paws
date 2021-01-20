@@ -1,15 +1,15 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
   /* initialize the external events
   -----------------------------------------------------------------*/
 
-  var containerEl = document.getElementById("pet-services-list");
+  const containerEl = document.getElementById("pet-services-list");
   new FullCalendar.Draggable(containerEl, {
     itemSelector: ".fc-event",
-    eventData: function (eventEl) {
+    eventData: function(eventEl) {
       return {
-        title: eventEl.innerText.trim(),
+        title: eventEl.innerText.trim()
       };
-    },
+    }
   });
 
   //// the individual way to do it
@@ -29,33 +29,33 @@ document.addEventListener("DOMContentLoaded", function () {
   -----------------------------------------------------------------*/
 
   //add call to backend mysql database for saved appointments
-  var serviceEvents = [
+  const serviceEvents = [
     {
       title: "Stored Event 3",
       start: "2021-01-21T13:00:00",
       overlap: false,
-      constraint: "businessHours",
+      constraint: "businessHours"
     },
     {
       title: "Stored Event 4",
       start: "2021-01-20T11:00:00",
       overlap: false,
-      constraint: "businessHours",
-    },
+      constraint: "businessHours"
+    }
   ];
 
-  var calendarEl = document.getElementById("calendar");
-  var calendar = new FullCalendar.Calendar(calendarEl, {
+  const calendarEl = document.getElementById("calendar");
+  const calendar = new FullCalendar.Calendar(calendarEl, {
     headerToolbar: {
       left: "prev,next today",
       center: "title",
-      right: "timeGridWeek,timeGridDay,listMonth",
+      right: "timeGridWeek,timeGridDay,listMonth"
     },
     height: "auto",
-    visibleRange: function (currentDate) {
+    visibleRange: function(currentDate) {
       // Generate a new date for manipulating in the next step
-      var startDate = new Date(currentDate.valueOf());
-      var endDate = new Date(currentDate.valueOf());
+      const startDate = new Date(currentDate.valueOf());
+      const endDate = new Date(currentDate.valueOf());
 
       // Adjust the start & end dates, respectively
       startDate.setDate(startDate.getDate() - 1); // One day in the past
@@ -76,18 +76,18 @@ document.addEventListener("DOMContentLoaded", function () {
       {
         daysOfWeek: [1, 2, 3, 4, 5, 6],
         startTime: "08:00", // 8am
-        endTime: "19:00", // 7pm
-      },
+        endTime: "19:00" // 7pm
+      }
     ],
     initialView: "timeGridWeek",
     editable: true,
     droppable: true, // this allows things to be dropped onto the calendar
-    eventClick: function (arg) {
+    eventClick: function() {
       if (confirm("Show module to add comments here ")) {
         //arg.event.editable();
       }
     },
-    eventSources: [serviceEvents],
+    eventSources: [serviceEvents]
 
     // events: function (serviceEvents, callback) {
     //   //add call to backend mysql database for saved appointments

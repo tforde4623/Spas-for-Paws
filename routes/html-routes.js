@@ -32,27 +32,27 @@ module.exports = function(app) {
   app.get("/calendar", (req, res) => {
     // get user data from where ever, hardcoded for test
     const currentUser = {
-      first_name: "Sharon",
-      last_name: "Roy",
+      firstname: "Sharon",
+      lastname: "Roy"
     };
 
     // get service data from the database or where ever it is stored
     // hardcoded for test
     const serviceData = [
       {
-        description: "Service 1",
+        description: "Service 1"
       },
       {
-        description: "Service 2",
+        description: "Service 2"
       },
       {
-        description: "Service 3",
-      },
+        description: "Service 3"
+      }
     ];
 
     const indexData = {
       user: currentUser,
-      petservices: serviceData,
+      petservices: serviceData
     };
     res.render("calendar", { dataIn: indexData });
   });
