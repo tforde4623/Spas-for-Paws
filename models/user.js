@@ -42,8 +42,7 @@ module.exports = function(sequelize, DataTypes) {
 
   // Association to with the appointment table
   User.associate = function(models) {
-    // We're saying that a User should belong to an User
-    // A User can't be created without an User due to the foreign key constraint
+    // User belongs to Appointments tables by user_id fk
     User.belongsTo(models.appointments, {
       foreignKey: "user_id"
     });

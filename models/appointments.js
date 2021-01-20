@@ -26,16 +26,15 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     {
-      freezeTableName: true,
       underscored: true
     }
   );
 
-  // Association to with the appointment table
+  // Associations for the appointment table
   Appointments.associate = function(models) {
-    // We're saying that an Appointments should belong to an User
-    // An Appointments can't be created without an User due to the foreign key constraint
+    // Appointments has many services
     Appointments.hasMany(models.services);
+    // Appintments has many users
     Appointments.hasMany(models.user);
   };
 

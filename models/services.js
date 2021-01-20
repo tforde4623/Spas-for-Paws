@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-  const Pets = sequelize.define(
+  const Services = sequelize.define(
     "Services",
     {
       category: {
@@ -20,18 +20,17 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     {
-      freezeTableName: true,
       underscored: true
     }
   );
 
-  Pets.associate = function(models) {
-    // We're saying that a Pets should belong to an User
-    // A Pets can't be created without an User due to the foreign key constraint
-    Pets.belongsTo(models.appointments, {
+  // Associations for the Services table
+  Services.associate = function(models) {
+    // Services belongs to Appointments by service_id fk
+    Services.belongsTo(models.appointments, {
       foreignKey: "service_id"
     });
   };
 
-  return Pets;
+  return Services;
 };
