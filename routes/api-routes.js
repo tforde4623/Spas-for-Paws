@@ -2,7 +2,7 @@
 const db = require("../models");
 const passport = require("../config/passport");
 
-module.exports = function(app) {
+module.exports = function (app) {
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
   // Otherwise the user will be sent an error
@@ -11,7 +11,7 @@ module.exports = function(app) {
     // Sending back a password, even a hashed password, isn't a good idea
     res.json({
       email: req.user.email,
-      id: req.user.id
+      id: req.user.id,
     });
   });
 
@@ -23,12 +23,12 @@ module.exports = function(app) {
       first_name: req.body.first_name,
       last_name: req.body.last_name,
       email: req.body.email,
-      password: req.body.password
+      password: req.body.password,
     })
       .then(() => {
         res.redirect(307, "/api/login");
       })
-      .catch(err => {
+      .catch((err) => {
         res.status(401).json(err);
       });
   });
@@ -52,21 +52,19 @@ module.exports = function(app) {
         first_name: req.user.first_name,
         last_name: req.user.last_name,
         email: req.user.email,
-        id: req.user.id
+        id: req.user.id,
       });
     }
   });
 
   // get req to get all services
   app.get("/api/services", (req, res) => {
-    models.Services.findAll({})
-      .then(response => res.json(response));
+    models.Services.findAll({}).then((response) => res.json(response));
   });
 
   // get all appointments for calender rendering -updated
   app.get("/api/appointments", (req, res) => {
-    models.Appointments.findAll({})
-      .then(response => res.json(response));
+    models.Appointments.findAll({}).then((response) => res.json(response));
   });
 
   // post a new appointment - updated
@@ -75,17 +73,16 @@ module.exports = function(app) {
       appointment_time: req.body.appointment_time,
       user_id: req.body.user_id,
       service_id: req.body.service_id,
-      comments: req.body.comments
-    }).then(response => res.json(response));
+      comments: req.body.comments,
+    }).then((response) => res.json(response));
   });
 
   // update an appointment
   app.put("/api/appointments/:id", (req, res) => {
-    models.Appointments.update(
-      req.body, {
+    models.Appointments.update(req.body, {
       where: {
-        id: req.body.id
-      }
-    }).then(post => res.json(post));
+        id: req.body.id,
+      },
+    }).then((post) => res.json(post));
   });
 };
