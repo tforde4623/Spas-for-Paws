@@ -26,4 +26,34 @@ module.exports = function(app) {
   app.get("/members", isAuthenticated, (req, res) => {
     res.sendFile(path.join(__dirname, "../public/members.html"));
   });
+
+  // TESTING ONLY!! Serve index.handlebars to the root route.  REMOVE ME!!
+  // eslint-disable-next-line prefer-arrow-callback
+  app.get("/calendar", (req, res) => {
+    // get user data from where ever, hardcoded for test
+    const currentUser = {
+      first_name: "Sharon",
+      last_name: "Roy",
+    };
+
+    // get service data from the database or where ever it is stored
+    // hardcoded for test
+    const serviceData = [
+      {
+        description: "Service 1",
+      },
+      {
+        description: "Service 2",
+      },
+      {
+        description: "Service 3",
+      },
+    ];
+
+    const indexData = {
+      user: currentUser,
+      petservices: serviceData,
+    };
+    res.render("calendar", { dataIn: indexData });
+  });
 };
