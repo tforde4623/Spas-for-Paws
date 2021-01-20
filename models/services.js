@@ -27,7 +27,7 @@ module.exports = function(sequelize, DataTypes) {
   Pets.associate = function(models) {
     // We're saying that a Pets should belong to an User
     // A Pets can't be created without an User due to the foreign key constraint
-    Pets.belongsTo(models.appointment, {
+    Pets.belongsTo(models.appointments, {
       foreignKey: "service_id"
     });
   };
