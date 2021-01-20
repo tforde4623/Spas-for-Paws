@@ -1,6 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
   const Pets = sequelize.define(
-    "Pets",
+    "Appointments",
     {
       appointment_time: {
         type: DataTypes.STRING,

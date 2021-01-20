@@ -1,6 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
   const Pets = sequelize.define(
-    "Pets",
+    "Services",
     {
       category: {
         type: DataTypes.STRING,
