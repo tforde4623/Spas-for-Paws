@@ -5,7 +5,7 @@ module.exports = function(sequelize, DataTypes) {
       category: {
         type: DataTypes.STRING,
         allowNull: false,
-        values: ["dog", "cat", "rabbit"],
+        values: ["Dog", "Cat", "Rabbit"],
         validate: {
           len: [1]
         }
