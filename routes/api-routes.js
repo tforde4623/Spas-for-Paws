@@ -57,6 +57,12 @@ module.exports = function(app) {
     }
   });
 
+  // get req to get all services
+  app.get("/api/services", (req, res) => {
+    models.Services.findAll({})
+      .then(response => res.json(response));
+  });
+
   // get all appointments for calender rendering -updated
   app.get("/api/appointments", (req, res) => {
     models.Appointments.findAll({})
