@@ -1,10 +1,10 @@
 module.exports = function(sequelize, DataTypes) {
   const Pets = sequelize.define(
-    "Pets",
+    "Appointments",
     {
       appointment_time: {
-        type: DataTypes.DATE(6),
-        allowNull: true,
+        type: DataTypes.STRING,
+        allowNull: false,
         validate: {
           len: [1]
         }
