@@ -9,16 +9,16 @@ module.exports = function(sequelize, DataTypes) {
           len: [1]
         }
       },
-      user_id: {
-        type: DataTypes.INT,
-        allowNull: false,
-        len: [1]
-      },
-      service_id: {
-        type: DataTypes.INT,
-        allowNull: false,
-        len: [1]
-      },
+      //   user_id: {
+      //     type: DataTypes.INT,
+      //     allowNull: false,
+      //     len: [1]
+      //   },
+      //   service_id: {
+      //     type: DataTypes.INT,
+      //     allowNull: false,
+      //     len: [1]
+      //   },
       comments: {
         type: DataTypes.STRING,
         allowNull: true,
@@ -33,9 +33,9 @@ module.exports = function(sequelize, DataTypes) {
   // Associations for the appointment table
   Appointments.associate = function(models) {
     // Appointments has many services
-    Appointments.hasMany(models.services);
-    // Appintments has many users
-    Appointments.hasMany(models.user);
+    Appointments.hasMany(models.Services);
+    // Appointments has many users
+    Appointments.hasMany(models.User);
   };
 
   return Appointments;
