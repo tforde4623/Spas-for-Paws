@@ -2,7 +2,30 @@ module.exports = function(sequelize, DataTypes) {
   const Appointments = sequelize.define(
     "Appointments",
     {
+      email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+        validate: {
+          isEmail: true
+        }
+      },
       appointment_time: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          len: [1]
+        }
+      },
+      animal: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        values: ["Dog", "Cat", "Rabbit"],
+        validate: {
+          len: [1]
+        }
+      },
+      service: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
@@ -19,14 +42,6 @@ module.exports = function(sequelize, DataTypes) {
       underscored: true
     }
   );
-
-  // Associations for the appointment table
-  Appointments.associate = function(models) {
-    // Appointments has many services
-    Appointments.belongsTo(models.Services);
-    // Appointments has many users
-    Appointments.belongsTo(models.User);
-  };
 
   return Appointments;
 };
