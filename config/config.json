@@ -1,18 +1,14 @@
 {
   "development": {
     "username": "root",
-<<<<<<< HEAD
     "password": "homework",
-=======
-    "password": "46234623",
->>>>>>> 92ca09d94595a300706a00febc84b000bc814d18
     "database": "paws_db",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
-    "password": "46234623",
+    "password": null,
     "database": "paws_db",
     "host": "127.0.0.1",
     "dialect": "mysql"
