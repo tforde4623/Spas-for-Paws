@@ -23,9 +23,9 @@ module.exports = function(sequelize, DataTypes) {
   // Associations for the appointment table
   Appointments.associate = function(models) {
     // Appointments has many services
-    Appointments.hasMany(models.Services);
+    Appointments.belongsTo(models.Services);
     // Appointments has many users
-    Appointments.hasMany(models.User);
+    Appointments.belongsTo(models.User);
   };
 
   return Appointments;
