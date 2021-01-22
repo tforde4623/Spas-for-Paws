@@ -30,11 +30,13 @@ h5 {
 }
 
 #navBar {
-  background-color: #FFBD59;
+  background-color: #ffbd59;
 }
 
 h5 {
   color: black;
+  font-family: "Pathway Gothic One", sans-serif;
+  font-size: 30px;
 }
 
 .card-header {
@@ -44,10 +46,10 @@ h5 {
 }
 
 .logoImageCenter {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 .col-md-offset-3 {
   display: block;
@@ -57,6 +59,8 @@ h5 {
 
 h2 {
   text-align: center;
+  font-family: "Pathway Gothic One", sans-serif;
+  font-size: 40px;
 }
 
 .form-group {
@@ -75,4 +79,19 @@ h2 {
 }
 .account {
   text-align: center;
+}
+
+/* Styling for Registration and Login Pages */
+
+#firstname-input,
+#lastname-input,
+#email-input,
+#password-input {
+  font-family: "Pathway Gothic One", sans-serif;
+}
+
+#registration-labels,
+.account {
+  font-family: "Pathway Gothic One", sans-serif;
+  font-size: 20px;
 }
