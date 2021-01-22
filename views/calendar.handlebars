@@ -1,0 +1,33 @@
+
+ <div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-6">
+            <h1>Full Calendar Testing</h1>
+        </div>
+        <div class="col-sm-6 rightalign">Current User: {{dataIn.user.first_name}} {{dataIn.user.last_name}} </div>
+    </div>
+</div>
+
+<div id='wrap'>
+    <div id='pet-services'>
+      <h4>Pet Grooming Services</h4>
+
+      <div id='pet-services-list'>
+            {{#each dataIn.petservices}}
+                <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
+                    <div class='fc-event-main'>{{this.description}}</div>
+                </div>
+            {{/each}}
+      </div>
+
+    </div>
+
+    <div id='calendar-wrap'>
+      <div id='calendar'></div>
+    </div>
+
+  </div>
+<div></div>
+	<script src="/assets/js/myfullcalendar.js"></script>
+
+
