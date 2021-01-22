@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-  const Pets = sequelize.define(
+  const Appointments = sequelize.define(
     "Appointments",
     {
       appointment_time: {
@@ -9,16 +9,6 @@ module.exports = function(sequelize, DataTypes) {
           len: [1]
         }
       },
-      user_id: {
-        type: DataTypes.INT,
-        allowNull: false,
-        len: [1]
-      },
-      service_id: {
-        type: DataTypes.INT,
-        allowNull: false,
-        len: [1]
-      },
       comments: {
         type: DataTypes.STRING,
         allowNull: true,
@@ -26,9 +16,17 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     {
-      freezeTableName: true
+      underscored: true
     }
   );
 
-  return Pets;
+  // Associations for the appointment table
+  Appointments.associate = function(models) {
+    // Appointments has many services
+    Appointments.hasMany(models.Services);
+    // Appointments has many users
+    Appointments.hasMany(models.User);
+  };
+
+  return Appointments;
 };

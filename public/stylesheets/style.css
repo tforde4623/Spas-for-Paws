@@ -1,3 +1,16 @@
+.navbar-light {
+  background-color: #ffbd59;
+  margin-bottom: 40px;
+}
+
+.navbar-brand {
+  margin-left: 10px;
+}
+
+h5 {
+  color: #000000;
+}
+
 .services-header {
   text-align: center;
   font-size: 40px;
@@ -31,6 +44,26 @@ h5 {
 }
 
 .logoImageCenter {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+.col-md-offset-3 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h2 {
+  text-align: center;
+}
+
+.form-group {
+  margin: 30px;
+}
+
+.btn-primary {
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -39,4 +72,7 @@ h5 {
 #copyright {
   text-align: center;
   font-family: "Pathway Gothic One", sans-serif;
+}
+.account {
+  text-align: center;
 }
