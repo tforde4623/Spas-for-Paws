@@ -35,17 +35,15 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     {
-      freezeTableName: true
+      freezeTableName: true,
+      underscored: true
     }
   );
 
   // Association to with the appointment table
-  Pets.associate = function(models) {
-    // We're saying that a Pets should belong to an User
-    // A Pets can't be created without an User due to the foreign key constraint
-    Pets.belongsTo(models.appointments, {
-      foreignKey: "user_id"
-    });
+  User.associate = function(models) {
+    // User belongs to Appointments tables by user_id fk
+    User.belongsTo(models.Appointments);
   };
 
   // Creating a custom method for our User model. This will check if an unhashed password entered by the user can be compared to the hashed password stored in our database
@@ -61,5 +59,6 @@ module.exports = function(sequelize, DataTypes) {
       null
     );
   });
+
   return User;
 };
