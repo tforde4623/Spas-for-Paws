@@ -14,37 +14,23 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   });
 
-  //// the individual way to do it
-  // var containerEl = document.getElementById('external-events-list');
-  // var eventEls = Array.prototype.slice.call(
-  //   containerEl.querySelectorAll('.fc-event')
-  // );
-  // eventEls.forEach(function(eventEl) {
-  //   new FullCalendar.Draggable(eventEl, {
-  //     eventData: {
-  //       title: eventEl.innerText.trim(),
-  //     }
-  //   });
-  // });
-
   /* initialize the calendar
+
   -----------------------------------------------------------------*/
 
-  //add call to backend mysql database for saved appointments
-  const serviceEvents = [
-    {
-      title: "Stored Event 3",
-      start: "2021-01-21T13:00:00",
-      overlap: false,
-      constraint: "businessHours",
-    },
-    {
-      title: "Stored Event 4",
-      start: "2021-01-20T11:00:00",
-      overlap: false,
-      constraint: "businessHours",
-    },
-  ];
+  // apiroutes.get("/api/appointments").then((data) => {
+  //   console.log("getting appointments", data);
+  //   for (let i = 0; i < data.length; i++) {
+  //     let obj = data[i];
+  //     let ev = {
+  //       title: obj.service,
+  //       start: obj.appointment_time,
+  //       overlap: false,
+  //       constraint: "businessHours",
+  //     };
+  //     appointments.push(ev);
+  //   }
+  // });
 
   function formatDate(date) {
     let hours = date.getHours();
@@ -96,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
     businessHours: [
       // specify an array instead
       {
-        daysOfWeek: [1, 2, 3, 4, 5, 6],
+        daysOfWeek: [1, 2, 3, 4, 5],
         startTime: "08:00", // 8am
         endTime: "19:00", // 7pm
       },
@@ -104,12 +90,11 @@ document.addEventListener("DOMContentLoaded", () => {
     initialView: "timeGridWeek",
     editable: true,
     droppable: true, // this allows things to be dropped onto the calendar
-    eventClick: function() {
-      if (confirm("Show module to add comments here ")) {
-        //arg.event.editable();
-      }
-    },
-    //eventSources: [serviceEvents],
+    // eventClick: function() {
+    //   if (confirm("Show module to add comments here ")) {
+    //     //arg.event.editable();
+    //   }
+    // },
     eventDragStop: function(info) {
       if (
         !confirm(
@@ -126,13 +111,10 @@ document.addEventListener("DOMContentLoaded", () => {
         // eslint-disable-next-line vars-on-top
         // eslint-disable-next-line no-var
         const newAppt = {
-          // eslint-disable-next-line camelcase
+          email: "sharon@test.com",
           appointment_time: info.event.start.toISOString(),
-          // eslint-disable-next-line camelcase
-          user_id: $("#currentuser").text(),
-          // eslint-disable-next-line camelcase
-          service_id: 1,
-          comments: "",
+          animal: "Dog",
+          service: info.event.title,
         };
 
         // Send the POST request.
@@ -151,32 +133,52 @@ document.addEventListener("DOMContentLoaded", () => {
         !confirm(
           "Thank you for scheduling " +
             info.event.title +
-            "!\nPlease confirm " +
+            "!\n Please confirm " +
             formatDate(info.event.start) +
             " time slot."
         )
       ) {
         info.revert();
+      } else {
+        //save to database
+        // eslint-disable-next-line vars-on-top
+        // eslint-disable-next-line no-var
+        const newAppt = {
+          email: "sharon@test.com",
+          appointment_time: info.event.start.toISOString(),
+          animal: "Dog",
+          service: info.event.title,
+        };
+
+        // Send the POST request.
+        $.ajax("/api/appointments", {
+          type: "POST",
+          data: newAppt,
+        }).then(() => {
+          console.log("created new appointment", newAppt);
+          // Reload the page to get the updated list
+          //location.reload();
+        });
       }
     },
-
-    events: function(serviceEvents, callback) {
+    events: function(appointments, callback) {
       //add call to backend mysql database for saved appointments
-      var serviceEvents = [
-        {
-          title: "Stored Event 1",
-          start: "2021-01-21T13:00:00",
-          overlap: false,
-          constraint: "businessHours",
-        },
-        {
-          title: "Stored Event 2",
-          start: "2021-01-20T11:00:00",
-          overlap: false,
-          constraint: "businessHours",
-        },
-      ];
-      callback(serviceEvents);
+      $.get("/api/appointments", function(data) {
+        let appointments = [];
+        console.log("appointments", data);
+        for (let i = 0; i < data.length; i++) {
+          let obj = data[i];
+          let ev = {
+            title: obj.service,
+            start: obj.appointment_time,
+            overlap: false,
+            constraint: "businessHours",
+          };
+          appointments.push(ev);
+        }
+        console.log("appointments", appointments);
+      });
+      callback(appointments);
     },
   });
   calendar.render();

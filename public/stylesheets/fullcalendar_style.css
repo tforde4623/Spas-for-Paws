@@ -57,3 +57,11 @@ body {
 div.rightalign {
   text-align: right;
 }
+
+.card {
+  overflow: hidden;
+}
+
+.card-text {
+  word-wrap: break-word;
+}
