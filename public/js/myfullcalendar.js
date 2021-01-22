@@ -163,7 +163,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     events: function(serviceEvents, callback) {
       //add call to backend mysql database for saved appointments
-      $.get("/api/appointments", function(data) {
+      $.get("/api/appointments", (data) => {
         let serviceEvents = [];
         console.log("appointments", data);
         for (let i = 0; i < data.length; i++) {
