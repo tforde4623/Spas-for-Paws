@@ -9,16 +9,6 @@ module.exports = function(sequelize, DataTypes) {
           len: [1]
         }
       },
-      //   user_id: {
-      //     type: DataTypes.INT,
-      //     allowNull: false,
-      //     len: [1]
-      //   },
-      //   service_id: {
-      //     type: DataTypes.INT,
-      //     allowNull: false,
-      //     len: [1]
-      //   },
       comments: {
         type: DataTypes.STRING,
         allowNull: true,
