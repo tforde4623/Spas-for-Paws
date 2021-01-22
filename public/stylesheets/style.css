@@ -20,6 +20,10 @@
   background-color: #FFBD59;
 }
 
+h5 {
+  color: black;
+}
+
 .card-header {
   text-align: center;
   font-size: 40px;
