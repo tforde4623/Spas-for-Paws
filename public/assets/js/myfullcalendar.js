@@ -1,15 +1,17 @@
+/* eslint-disable prettier/prettier */
+
 document.addEventListener("DOMContentLoaded", () => {
   /* initialize the external events
   -----------------------------------------------------------------*/
-
   const containerEl = document.getElementById("pet-services-list");
   new FullCalendar.Draggable(containerEl, {
     itemSelector: ".fc-event",
     eventData: function(eventEl) {
       return {
-        title: eventEl.innerText.trim()
+        // eslint-disable-next-line prettier/prettier
+        title: eventEl.innerText.trim(),
       };
-    }
+    },
   });
 
   //// the individual way to do it
@@ -34,22 +36,42 @@ document.addEventListener("DOMContentLoaded", () => {
       title: "Stored Event 3",
       start: "2021-01-21T13:00:00",
       overlap: false,
-      constraint: "businessHours"
+      constraint: "businessHours",
     },
     {
       title: "Stored Event 4",
       start: "2021-01-20T11:00:00",
       overlap: false,
-      constraint: "businessHours"
-    }
+      constraint: "businessHours",
+    },
   ];
+
+  function formatDate(date) {
+    let hours = date.getHours();
+    let minutes = date.getMinutes();
+    const ampm = hours >= 12 ? "pm" : "am";
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    const strTime = hours + ":" + minutes + " " + ampm;
+    return (
+      date.getMonth() +
+      1 +
+      "/" +
+      date.getDate() +
+      "/" +
+      date.getFullYear() +
+      "  " +
+      strTime
+    );
+  }
 
   const calendarEl = document.getElementById("calendar");
   const calendar = new FullCalendar.Calendar(calendarEl, {
     headerToolbar: {
       left: "prev,next today",
       center: "title",
-      right: "timeGridWeek,timeGridDay,listMonth"
+      right: "timeGridWeek,timeGridDay,listMonth",
     },
     height: "auto",
     visibleRange: function(currentDate) {
@@ -76,8 +98,8 @@ document.addEventListener("DOMContentLoaded", () => {
       {
         daysOfWeek: [1, 2, 3, 4, 5, 6],
         startTime: "08:00", // 8am
-        endTime: "19:00" // 7pm
-      }
+        endTime: "19:00", // 7pm
+      },
     ],
     initialView: "timeGridWeek",
     editable: true,
@@ -87,26 +109,75 @@ document.addEventListener("DOMContentLoaded", () => {
         //arg.event.editable();
       }
     },
-    eventSources: [serviceEvents]
+    //eventSources: [serviceEvents],
+    eventDragStop: function(info) {
+      if (
+        !confirm(
+          "Thank you for scheduling " +
+            info.event.title +
+            "!\n Please confirm " +
+            formatDate(info.event.start) +
+            " time slot."
+        )
+      ) {
+        info.revert();
+      } else {
+        //save to database
+        // eslint-disable-next-line vars-on-top
+        // eslint-disable-next-line no-var
+        const newAppt = {
+          // eslint-disable-next-line camelcase
+          appointment_time: info.event.start.toISOString(),
+          // eslint-disable-next-line camelcase
+          user_id: $("#currentuser").text(),
+          // eslint-disable-next-line camelcase
+          service_id: 1,
+          comments: "",
+        };
 
-    // events: function (serviceEvents, callback) {
-    //   //add call to backend mysql database for saved appointments
-    //   var serviceEvents = [
-    //     {
-    //       title: "Stored Event 1",
-    //       start: "2021-01-21T13:00:00",
-    //       overlap: false,
-    //       constraint: "businessHours",
-    //     },
-    //     {
-    //       title: "Stored Event 2",
-    //       start: "2021-01-20T11:00:00",
-    //       overlap: false,
-    //       constraint: "businessHours",
-    //     },
-    //   ];
-    //   callback(serviceEvents);
-    // },
+        // Send the POST request.
+        $.ajax("/api/appointments", {
+          type: "POST",
+          data: newAppt,
+        }).then(() => {
+          console.log("created new appointment", newAppt);
+          // Reload the page to get the updated list
+          //location.reload();
+        });
+      }
+    },
+    eventReceive: function(info) {
+      if (
+        !confirm(
+          "Thank you for scheduling " +
+            info.event.title +
+            "!\nPlease confirm " +
+            formatDate(info.event.start) +
+            " time slot."
+        )
+      ) {
+        info.revert();
+      }
+    },
+
+    events: function(serviceEvents, callback) {
+      //add call to backend mysql database for saved appointments
+      var serviceEvents = [
+        {
+          title: "Stored Event 1",
+          start: "2021-01-21T13:00:00",
+          overlap: false,
+          constraint: "businessHours",
+        },
+        {
+          title: "Stored Event 2",
+          start: "2021-01-20T11:00:00",
+          overlap: false,
+          constraint: "businessHours",
+        },
+      ];
+      callback(serviceEvents);
+    },
   });
   calendar.render();
 });
