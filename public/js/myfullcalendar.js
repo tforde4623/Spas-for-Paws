@@ -161,10 +161,10 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       }
     },
-    events: function(appointments, callback) {
+    events: function(serviceEvents, callback) {
       //add call to backend mysql database for saved appointments
       $.get("/api/appointments", function(data) {
-        let appointments = [];
+        let serviceEvents = [];
         console.log("appointments", data);
         for (let i = 0; i < data.length; i++) {
           let obj = data[i];
@@ -174,11 +174,11 @@ document.addEventListener("DOMContentLoaded", () => {
             overlap: false,
             constraint: "businessHours",
           };
-          appointments.push(ev);
+          serviceEvents.push(ev);
         }
-        console.log("appointments", appointments);
+        console.log("appointments", serviceEvents);
       });
-      callback(appointments);
+      callback(serviceEvents);
     },
   });
   calendar.render();
