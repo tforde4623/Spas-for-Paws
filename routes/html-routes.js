@@ -2,36 +2,57 @@
 // Requiring path to so we can use relative routes to our HTML files
 const path = require("path");
 
-// Requiring our custom middleware for checking if a user is logged in
-const isAuthenticated = require("../config/middleware/isAuthenticated");
+module.exports = function (app) {
+  // can use some of this login for checking if logged in
+  // app.get("/", (req, res) => {
+  //   // If the user already has an account send them to the members page
+  //   if (req.user) {
+  //     res.redirect("/members");
+  //   }
+  //   res.sendFile(path.join(__dirname, "../public/signup.html"));
+  // });
 
-module.exports = function(app) {
-  app.get("/", (req, res) => {
-    // If the user already has an account send them to the members page
-    if (req.user) {
-      res.redirect("/members");
-    }
-    res.sendFile(path.join(__dirname, "../public/signup.html"));
+  // index/home page route
+  app.get("/", res => {
+    // replace with render
+    res.sendFile(path.join(__dirname, "../public/index.html"));
   });
 
+  // register page route
+  app.get("/register", (req, res) => {
+    // replace with render
+    res.sendFile(path.join(__dirname, "../public/register.html"));
+  });
+
+  // login page route
   app.get("/login", (req, res) => {
     // If the user already has an account send them to the members page
     if (req.user) {
-      res.redirect("/members");
+      res.redirect("/");
     }
+    // replace with render
     res.sendFile(path.join(__dirname, "../public/login.html"));
   });
 
   // Here we've add our isAuthenticated middleware to this route.
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
-  app.get("/members", isAuthenticated, (req, res) => {
-    res.sendFile(path.join(__dirname, "../public/members.html"));
-  });
+  // app.get("/members", isAuthenticated, res => {
+  //   res.sendFile(path.join(__dirname, "../public/members.html"));
+  // });
 
-  app.get("/calendar", (req, res) => {
-    //render calendar page via handlebars
+  app.get("/calendar", checkAuthentication, (req,res) => {
+    //render calendar page via handlebars IF logged in
     res.render("calendar", { dataIn: serviceData });
   });
+};
+
+// function to handle pages only accessible if logged in
+const checkAuthentication = (req, res, next) => {
+  if (req.user) {
+    next();
+  } else {
+    res.redirect("/login");
+  }
 };
 
 const serviceData = [

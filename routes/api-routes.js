@@ -8,6 +8,7 @@ module.exports = function(app) {
   // Otherwise the user will be sent an error
   // might need to change this to add first/last name, not sure
   app.post("/api/login", passport.authenticate("local"), (req, res) => {
+    console.log("Hit loggin...");
     // Sending back a password, even a hashed password, isn't a good idea
     res.json({
       email: req.user.email,
@@ -19,9 +20,10 @@ module.exports = function(app) {
   // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
   // otherwise send back an error - updated
   app.post("/api/signup", (req, res) => {
+    console.log(req.body);
     db.User.create({
-      first_name: req.body.first_name,
-      last_name: req.body.last_name,
+      first_name: req.body.firstName,
+      last_name: req.body.lastName,
       email: req.body.email,
       password: req.body.password
     })
@@ -72,18 +74,34 @@ module.exports = function(app) {
     console.log(req.body);
     db.Appointments.create({
       email: req.body.email,
+      // eslint-disable-next-line camelcase
       appointment_time: req.body.appointment_time,
       animal: req.body.animal,
       service: req.body.service
-    }).then(response => res.json(response));
+    }).then(response => res.json(response.id));
   });
 
   // update an appointment
-  app.put("/api/appointments/:id", (req, res) => {
-    db.Appointments.update(req.body, {
-      where: {
-        id: req.body.id
+  app.put("/api/appointments", (req, res) => {
+    db.Appointments.update(
+      {
+        // eslint-disable-next-line camelcase
+        appointment_time: req.body.appointment_time
+      },
+      {
+        where: {
+          id: req.body.id
+        }
       }
-    }).then(post => res.json(post));
+    ).then(post => res.json(post));
+  });
+
+  // delete an appointment (could change id to time, depending on if we have the id available)
+  app.delete("/api/appointments/:id", (req, res) => {
+    db.Appointments.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(response => res.json(response));
   });
 };

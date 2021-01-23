@@ -80,6 +80,10 @@ div.rightalign {
   text-align: center;
 }
 
+.card-body {
+  padding: 5px;
+}
+
 .card-text {
   white-space: pre-wrap;
   overflow: hidden;

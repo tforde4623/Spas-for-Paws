@@ -7,9 +7,13 @@ document.addEventListener("DOMContentLoaded", () => {
   new FullCalendar.Draggable(containerEl, {
     itemSelector: ".fc-event",
     eventData: function(eventEl) {
+      console.log(eventEl);
       return {
         // eslint-disable-next-line prettier/prettier
         title: eventEl.innerText.trim(),
+        overlap: false,
+        constraint: "businessHours",
+        extendedProps: { animal: "Dog", apptId: -1 },
       };
     },
   });
@@ -18,19 +22,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   -----------------------------------------------------------------*/
 
-  // apiroutes.get("/api/appointments").then((data) => {
-  //   console.log("getting appointments", data);
-  //   for (let i = 0; i < data.length; i++) {
-  //     let obj = data[i];
-  //     let ev = {
-  //       title: obj.service,
-  //       start: obj.appointment_time,
-  //       overlap: false,
-  //       constraint: "businessHours",
-  //     };
-  //     appointments.push(ev);
-  //   }
-  // });
+  let currentUser = "";
+  $.get("/api/user_data").then((data) => {
+    currentUser = data.email;
+  });
 
   function formatDate(date) {
     let hours = date.getHours();
@@ -86,23 +81,43 @@ document.addEventListener("DOMContentLoaded", () => {
         startTime: "08:00", // 8am
         endTime: "19:00", // 7pm
       },
+      {
+        daysOfWeek: [0, 6],
+        startTime: "12:00", // 12
+        endTime: "15:00", // 3pm
+      },
     ],
     initialView: "timeGridWeek",
     editable: true,
     droppable: true, // this allows things to be dropped onto the calendar
-    // eventClick: function() {
-    //   if (confirm("Show module to add comments here ")) {
-    //     //arg.event.editable();
-    //   }
-    // },
-    eventDragStop: function(info) {
+    eventClick: function(arg) {
+      if (confirm("Are you sure you want to delete this event?")) {
+        console.log("delete me", arg.event);
+        if (arg.event.extendedProps.apptId > 0) {
+          $.ajax({
+            method: "DELETE",
+            url: "/api/appointments/" + arg.event.extendedProps.apptId,
+          }).then(() => {
+            console.log("Deleted appointment", arg.event);
+          });
+        }
+        arg.event.remove();
+      }
+    },
+    eventDrop: function(info) {
+      console.log(currentUser, info.event.extendedProps.userEmail);
+      if (currentUser !== info.event.extendedProps.userEmail) {
+        alert("You may only modify your own appointments.");
+        info.revert();
+        return;
+      }
       if (
         !confirm(
-          "Thank you for scheduling " +
+          "You are updating your appointment for " +
             info.event.title +
             "!\n Please confirm " +
             formatDate(info.event.start) +
-            " time slot."
+            " as new time slot."
         )
       ) {
         info.revert();
@@ -110,22 +125,23 @@ document.addEventListener("DOMContentLoaded", () => {
         //save to database
         // eslint-disable-next-line vars-on-top
         // eslint-disable-next-line no-var
+        console.log("eventDragStop", info.event, info.eventData);
         const newAppt = {
-          email: "sharon@test.com",
+          id: info.event.extendedProps.apptId,
+          // eslint-disable-next-line camelcase
           appointment_time: info.event.start.toISOString(),
-          animal: "Dog",
-          service: info.event.title,
         };
-
-        // Send the POST request.
-        $.ajax("/api/appointments", {
-          type: "POST",
-          data: newAppt,
-        }).then(() => {
-          console.log("created new appointment", newAppt);
-          // Reload the page to get the updated list
-          //location.reload();
-        });
+        if (info.event.extendedProps.apptId > 0) {
+          // Send the update POST request.
+          $.ajax("/api/appointments/", {
+            type: "PUT",
+            data: newAppt,
+          }).then(() => {
+            console.log("updated appointment", newAppt, info.event);
+            // Reload the page to get the updated list
+            //location.reload();
+          });
+        }
       }
     },
     eventReceive: function(info) {
@@ -141,10 +157,13 @@ document.addEventListener("DOMContentLoaded", () => {
         info.revert();
       } else {
         //save to database
+        console.log("eventReceive", info.event, info.eventData);
+
         // eslint-disable-next-line vars-on-top
         // eslint-disable-next-line no-var
         const newAppt = {
-          email: "sharon@test.com",
+          email: currentUser,
+          // eslint-disable-next-line camelcase
           appointment_time: info.event.start.toISOString(),
           animal: "Dog",
           service: info.event.title,
@@ -154,31 +173,44 @@ document.addEventListener("DOMContentLoaded", () => {
         $.ajax("/api/appointments", {
           type: "POST",
           data: newAppt,
-        }).then(() => {
-          console.log("created new appointment", newAppt);
+        }).then((response) => {
+          console.log("created new appointment", newAppt, response);
+          info.event.extendedProps.apptId = response;
           // Reload the page to get the updated list
-          //location.reload();
+          location.reload();
         });
       }
     },
     events: function(serviceEvents, callback) {
       //add call to backend mysql database for saved appointments
-      $.get("/api/appointments", (data) => {
-        const serviceEvents = [];
-        console.log("appointments", data);
-        for (let i = 0; i < data.length; i++) {
-          const obj = data[i];
+      $.ajax({
+        url: "/api/appointments",
+        method: "GET",
+      }).then((response) => {
+        console.log(response);
+        // eslint-disable-next-line prefer-const
+        let serviceEvents = [];
+        console.log("appointments", response);
+        for (let i = 0; i < response.length; i++) {
+          const obj = response[i];
           const ev = {
             title: obj.service,
             start: obj.appointment_time,
             overlap: false,
             constraint: "businessHours",
+            extendedProps: {
+              apptId: obj.id,
+              userEmail: obj.email,
+            },
           };
+          if (ev.userEmail === currentUser) {
+            ev.backgroundColor = "green";
+          }
           serviceEvents.push(ev);
         }
         console.log("appointments", serviceEvents);
+        callback(serviceEvents);
       });
-      callback(serviceEvents);
     },
   });
   calendar.render();

@@ -8,7 +8,7 @@
   },
   "test": {
     "username": "root",
-    "password": "vegetable",
+    "password": "46234623",
     "database": "paws_db",
     "host": "127.0.0.1",
     "dialect": "mysql"
