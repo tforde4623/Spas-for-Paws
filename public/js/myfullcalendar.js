@@ -7,9 +7,13 @@ document.addEventListener("DOMContentLoaded", () => {
   new FullCalendar.Draggable(containerEl, {
     itemSelector: ".fc-event",
     eventData: function(eventEl) {
+      console.log(eventEl);
       return {
         // eslint-disable-next-line prettier/prettier
         title: eventEl.innerText.trim(),
+        overlap: false,
+        constraint: "businessHours",
+        extendedProps: { animal: "Dog", apptId: -1 },
       };
     },
   });
@@ -86,15 +90,29 @@ document.addEventListener("DOMContentLoaded", () => {
         startTime: "08:00", // 8am
         endTime: "19:00", // 7pm
       },
+      {
+        daysOfWeek: [0, 6],
+        startTime: "12:00", // 12
+        endTime: "15:00", // 3pm
+      },
     ],
     initialView: "timeGridWeek",
     editable: true,
     droppable: true, // this allows things to be dropped onto the calendar
-    // eventClick: function() {
-    //   if (confirm("Show module to add comments here ")) {
-    //     //arg.event.editable();
-    //   }
-    // },
+    eventClick: function(arg) {
+      if (confirm("Are you sure you want to delete this event?")) {
+        console.log("delete me", arg.event);
+        arg.event.remove();
+        if (arg.event.extendedProps.appId > 0) {
+          $.ajax({
+            method: "DELETE",
+            url: "/api/appointments/" + arg.event.extendedProps.appId,
+          }).then(() => {
+            console.log("Deleted appointment", arg.event);
+          });
+        }
+      }
+    },
     eventDragStop: function(info) {
       if (
         !confirm(
@@ -110,7 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
         //save to database
         // eslint-disable-next-line vars-on-top
         // eslint-disable-next-line no-var
-        console.log("info", info);
+        console.log("eventDragStop", info.event, info.eventData);
         const newAppt = {
           email: "sharon@test.com",
           appointment_time: info.event.start.toISOString(),
@@ -142,7 +160,7 @@ document.addEventListener("DOMContentLoaded", () => {
         info.revert();
       } else {
         //save to database
-        console.log("here", info.event, info.eventData);
+        console.log("eventReceive", info.event, info.eventData);
         // eslint-disable-next-line vars-on-top
         // eslint-disable-next-line no-var
         const newAppt = {
@@ -170,6 +188,7 @@ document.addEventListener("DOMContentLoaded", () => {
         method: "GET",
       }).then((response) => {
         console.log(response);
+        // eslint-disable-next-line prefer-const
         let serviceEvents = [];
         console.log("appointments", response);
         for (let i = 0; i < response.length; i++) {
@@ -179,6 +198,9 @@ document.addEventListener("DOMContentLoaded", () => {
             start: obj.appointment_time,
             overlap: false,
             constraint: "businessHours",
+            extendedProps: {
+              apptId: obj.id,
+            },
           };
           serviceEvents.push(ev);
         }
