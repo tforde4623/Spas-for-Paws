@@ -22,19 +22,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   -----------------------------------------------------------------*/
 
-  // apiroutes.get("/api/appointments").then((data) => {
-  //   console.log("getting appointments", data);
-  //   for (let i = 0; i < data.length; i++) {
-  //     let obj = data[i];
-  //     let ev = {
-  //       title: obj.service,
-  //       start: obj.appointment_time,
-  //       overlap: false,
-  //       constraint: "businessHours",
-  //     };
-  //     appointments.push(ev);
-  //   }
-  // });
+  let currentUser = "";
+  $.get("/api/user_data").then((data) => {
+    currentUser = data.email;
+  });
 
   function formatDate(date) {
     let hours = date.getHours();
@@ -114,6 +105,12 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     },
     eventDrop: function(info) {
+      console.log(currentUser, info.event.extendedProps.userEmail);
+      if (currentUser != info.event.extendedProps.userEmail) {
+        alert("You may only modify your own appointments.");
+        info.revert();
+        return;
+      }
       if (
         !confirm(
           "You are updating your appointment for " +
@@ -161,10 +158,11 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         //save to database
         console.log("eventReceive", info.event, info.eventData);
+
         // eslint-disable-next-line vars-on-top
         // eslint-disable-next-line no-var
         const newAppt = {
-          email: "sharon@test.com",
+          email: currentUser,
           // eslint-disable-next-line camelcase
           appointment_time: info.event.start.toISOString(),
           animal: "Dog",
@@ -202,8 +200,12 @@ document.addEventListener("DOMContentLoaded", () => {
             constraint: "businessHours",
             extendedProps: {
               apptId: obj.id,
+              userEmail: obj.email,
             },
           };
+          if (ev.userEmail === currentUser) {
+            ev.backgroundColor = "green";
+          }
           serviceEvents.push(ev);
         }
         console.log("appointments", serviceEvents);
