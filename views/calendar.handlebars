@@ -1,25 +1,30 @@
 
  <div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-6">
-            <h1>Full Calendar Testing</h1>
+    <div class="row col-12">
+      <div class="card">
+        <div class="card-body">
+          You can make your appointments below
         </div>
-        <div class="col-sm-6 rightalign">Current User: {{dataIn.user.first_name}} {{dataIn.user.last_name}} </div>
+      </div>
     </div>
+  </br>
 </div>
 
 <div id='wrap'>
     <div id='pet-services'>
       <h4>Pet Grooming Services</h4>
-
       <div id='pet-services-list'>
-            {{#each dataIn.petservices}}
+            {{#each dataIn}}
                 <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
-                    <div class='fc-event-main'>{{this.description}}</div>
+                  <div class='fc-event-main'><h6>{{this.title}}</h6></div>
+                  <div class="card" >
+                    <div class="card-body">
+                      <p class="card-text">{{this.description}}</p>
+                    </div>
+                  </div>
                 </div>
             {{/each}}
       </div>
-
     </div>
 
     <div id='calendar-wrap'>
@@ -28,6 +33,12 @@
 
   </div>
 <div></div>
-	<script src="/assets/js/myfullcalendar.js"></script>
+      <footer>
+        <div class="card">
+            <div class="col" id="copyright"> <strong>&#169; Copyright 2021 Spas4Paws</strong></div>
+          </div>
+      </footer>
+
+	<script src="/js/myfullcalendar.js"></script>
 
 

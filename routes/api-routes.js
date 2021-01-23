@@ -59,27 +59,28 @@ module.exports = function(app) {
 
   // get req to get all services
   app.get("/api/services", (req, res) => {
-    models.Services.findAll({}).then(response => res.json(response));
+    db.Services.findAll({}).then(response => res.json(response));
   });
 
   // get all appointments for calender rendering -updated
   app.get("/api/appointments", (req, res) => {
-    models.Appointments.findAll({}).then(response => res.json(response));
+    db.Appointments.findAll({}).then(response => res.json(response));
   });
 
   // post a new appointment - updated
   app.post("/api/appointments", (req, res) => {
-    models.Appointments.create({
+    console.log(req.body);
+    db.Appointments.create({
+      email: req.body.email,
       appointment_time: req.body.appointment_time,
-      user_id: req.body.user_id,
-      service_id: req.body.service_id,
-      comments: req.body.comments
+      animal: req.body.animal,
+      service: req.body.service
     }).then(response => res.json(response));
   });
 
   // update an appointment
   app.put("/api/appointments/:id", (req, res) => {
-    models.Appointments.update(req.body, {
+    db.Appointments.update(req.body, {
       where: {
         id: req.body.id
       }

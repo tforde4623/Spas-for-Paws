@@ -2,14 +2,62 @@
 <html lang="en">
     <head>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-		<link rel="stylesheet" href="/assets/css/fullcalendar_style.css" type="text/css" />
-		<title>Testing FullCalendar</title>
-		<script type="text/javascript" src="https://code.jquery.com/jquery.js"></script>
-		<link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+		<!-- Bootstrap CSS -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
+		<!-- External Stylesheet -->
+		<link href="/stylesheets/style.css" rel="stylesheet">
+		<link rel="stylesheet" href="/stylesheets/fullcalendar_style.css" type="text/css" />
+
+		<!-- Google Fonts -->
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Pathway+Gothic+One&display=swap" rel="stylesheet">
+
+		<!-- Font Awesome -->
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+
+		<!-- jQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+		<!-- Full Calendar -->
 		<link href='/assets/fullcalendar_lib/main.css' rel='stylesheet' />
 		<script src='/assets/fullcalendar_lib/main.js'></script>
+
+		<title>Calendar</title>
 	</head>
 	<body>
+	  <div class="container" id="navBar">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="index.html"><img src="images/edited-header-logo.png" width="200px" alt=""></a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      
+        <span class="navbar-toggler-icon"></span>
+      
+        </button>
+    
+      <!-- Toggle button with links to Home, Register, Login, and Calendar pages when webpage is viewed on smaller viewports on mobile devices. -->
+        <nav class="collapse navbar-collapse" id="navbarTogglerDemo02">
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html"><h5>Home</h5></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="register.html"><h5>Register</h5></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="login.html"><h5>Login</h5></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"><h5>Calendar</h5></a>
+            </li>
+          </ul>              
+        </nav>
+      </nav>
+  	</div>
+
 		{{{ body }}}
 	</body>
 </html>
