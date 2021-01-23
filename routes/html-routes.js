@@ -177,6 +177,34 @@ const serviceData = [
     isCat: false,
     isRabbit: true,
   },
+  {
+    title: "Bath & Full Haircut",
+    description: "For rabbits who need a bath & haircut.",
+    animal: "Rabbit",
+  },
+  {
+    title: "Bath & Brush",
+    description:
+      "For rabbits who need just a bath for healthy-looking coat, clean ears & trimmed nails.",
+    animal: "Rabbit",
+  },
+  {
+    title: "Bunny Bath & Trim",
+    description:
+      "For bunnies through 3 months old who need a bath & haircut. Plus our pet stylists help get them comfortable visiting the salon.",
+    animal: "Rabbit",
+  },
+  {
+    title: "Bunny Bath & Brush",
+    description:
+      "For bunnies through 3 months old who need a bath to maintain a healthy-looking coat, clean ears & trimmed nails. Plus, our pet-loving stylists help get kittens comfortable visiting the salon.",
+    animal: "Rabbit",
+  },
+  {
+    title: "Nail Trim",
+    description: "Prevents painful splaying & splitting of your cat's nails.",
+    animal: "Rabbit",
+  },
 ];
 
 // index.hmtl
