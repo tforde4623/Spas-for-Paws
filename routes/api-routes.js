@@ -74,19 +74,26 @@ module.exports = function(app) {
     console.log(req.body);
     db.Appointments.create({
       email: req.body.email,
+      // eslint-disable-next-line camelcase
       appointment_time: req.body.appointment_time,
       animal: req.body.animal,
       service: req.body.service
-    }).then(response => res.json(response));
+    }).then(response => res.json(response.id));
   });
 
   // update an appointment
-  app.put("/api/appointments/:id", (req, res) => {
-    db.Appointments.update(req.body, {
-      where: {
-        id: req.body.id
+  app.put("/api/appointments", (req, res) => {
+    db.Appointments.update(
+      {
+        // eslint-disable-next-line camelcase
+        appointment_time: req.body.appointment_time
+      },
+      {
+        where: {
+          id: req.body.id
+        }
       }
-    }).then(post => res.json(post));
+    ).then(post => res.json(post));
   });
 
   // delete an appointment (could change id to time, depending on if we have the id available)
