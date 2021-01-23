@@ -1,5 +1,4 @@
 $(document).ready(() => {
-  console.log("Fuck off");
   // Getting references to our form and input
   const signUpForm = $(".registration-form");
   const firstNameInput = $("input#firstname-input");
