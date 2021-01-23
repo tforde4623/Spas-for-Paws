@@ -32,8 +32,13 @@ $(document).ready(() => {
         window.location.replace("/");
         // If there's an error, log the error
       })
-      .catch(err => {
-        console.log(err);
-      });
+      .catch(failedLogin);
+  }
+
+  function failedLogin(err) {
+    if (err.responseText === "Unauthorized") {
+      $("#alert .msg").text("Login failed!");
+      $("#alert").fadeIn(500);
+    }
   }
 });

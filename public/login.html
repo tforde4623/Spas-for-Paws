@@ -50,7 +50,7 @@
                   <a class="nav-link" href="/login"><h5>Login</h5></a>
                   </li>
                   <li class="nav-item">
-                  <a class="nav-link float-right" href="/logout"><h5>Logout</h5></a>
+                  <a class="nav-link" href="/logout"><h5>Logout</h5></a>
                   </li>
               </ul>              
           </nav>
@@ -69,6 +69,10 @@
               <div class="form-group">
                 <label for="exampleInputPassword1" id="registration-labels">Password</label>
                 <input type="password" class="form-control" id="password-input" placeholder="Password">
+              </div>
+              <div style="display: none" id="alert" class="alert alert-danger" role="alert">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span class="sr-only">Error:</span> <span class="msg"></span>
               </div>
               <button type="submit" class="btn btn-primary">Submit</button>
             </br>
