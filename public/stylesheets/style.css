@@ -1,6 +1,5 @@
 .navbar-light {
   background-color: #ffbd59;
-  margin-bottom: 40px;
 }
 
 .navbar-brand {
@@ -19,7 +18,8 @@ h5 {
 
 .services-text {
   text-align: center;
-  font-size: 25px;
+  font-size: 35px;
+  font-weight: bold;
   font-family: "Pathway Gothic One", sans-serif;
 }
 
@@ -45,8 +45,15 @@ h5 {
 
 .card-header {
   text-align: center;
-  font-size: 40px;
+  font-size: 50px;
+  font-weight: bold;
   font-family: "Pathway Gothic One", sans-serif;
+  border: none;
+  padding: 0px;
+}
+
+.card-welcome {
+  border: none;
 }
 
 .col-md-offset-3 {
@@ -75,6 +82,7 @@ h2 {
   text-align: center;
   font-family: "Pathway Gothic One", sans-serif;
 }
+
 .account {
   text-align: center;
 }
@@ -86,6 +94,25 @@ h2 {
 
 #button {
   background-color: #ffbd59;
+}
+
+.card-footer {
+  border: none;
+}
+
+/* Styling for Home Page */
+.mainDescription {
+  text-align: center;
+  font-family: "Pathway Gothic One", sans-serif;
+  font-size: 25px;
+}
+
+.btn-primary {
+  color: #000000;
+  font-family: "Pathway Gothic One", sans-serif !important;
+  font-size: 25px !important;
+  background-color: #ffbd59 !important;
+  border-color: #ffbd59 !important;
 }
 
 /* Styling for Registration and Login Pages */
@@ -101,4 +128,10 @@ h2 {
 .account {
   font-family: "Pathway Gothic One", sans-serif;
   font-size: 20px;
+}
+
+.card-registration,
+.card-login {
+  border: none;
+  margin-top: 20px;
 }
