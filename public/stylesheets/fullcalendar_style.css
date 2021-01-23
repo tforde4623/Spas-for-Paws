@@ -11,7 +11,7 @@ body {
 }
 
 #pet-services {
-  position: fixed;
+position: absolute;
   left: 20px;
   top: 100px;
   width: 150px;
@@ -23,6 +23,8 @@ body {
 
 #pet-services h4 {
   font-size: 16px;
+  text-align: center;
+  font-family: "Pathway Gothic One", sans-serif;
   margin-top: 0;
   padding-top: 1em;
 }
@@ -59,9 +61,19 @@ div.rightalign {
 }
 
 .card {
-  overflow: hidden;
+  max-width: 100%;
 }
 
 .card-text {
+  white-space: pre-wrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.fc-event-main {
+  text-align: center;
+  font-size: 15px;
+  font-family: "Pathway Gothic One", sans-serif;
+  max-width: 100%;
   word-wrap: break-word;
 }
