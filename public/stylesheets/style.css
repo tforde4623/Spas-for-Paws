@@ -87,6 +87,15 @@ h2 {
   text-align: center;
 }
 
+#book {
+  color: black;
+  font-family: "Pathway-Gothic one", sans-serif;
+}
+
+#button {
+  background-color: #ffbd59;
+}
+
 .card-footer {
   border: none;
 }
