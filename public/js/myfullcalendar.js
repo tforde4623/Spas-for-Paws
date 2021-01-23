@@ -110,6 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
         //save to database
         // eslint-disable-next-line vars-on-top
         // eslint-disable-next-line no-var
+        console.log("info", info);
         const newAppt = {
           email: "sharon@test.com",
           appointment_time: info.event.start.toISOString(),
@@ -122,7 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
           type: "POST",
           data: newAppt,
         }).then(() => {
-          console.log("created new appointment", newAppt);
+          console.log("created new appointment", newAppt, info.event);
           // Reload the page to get the updated list
           //location.reload();
         });
@@ -141,6 +142,7 @@ document.addEventListener("DOMContentLoaded", () => {
         info.revert();
       } else {
         //save to database
+        console.log("here", info.event, info.eventData);
         // eslint-disable-next-line vars-on-top
         // eslint-disable-next-line no-var
         const newAppt = {
@@ -163,11 +165,15 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     events: function(serviceEvents, callback) {
       //add call to backend mysql database for saved appointments
-      $.get("/api/appointments", (data) => {
-        const serviceEvents = [];
-        console.log("appointments", data);
-        for (let i = 0; i < data.length; i++) {
-          const obj = data[i];
+      $.ajax({
+        url: "/api/appointments",
+        method: "GET",
+      }).then((response) => {
+        console.log(response);
+        let serviceEvents = [];
+        console.log("appointments", response);
+        for (let i = 0; i < response.length; i++) {
+          const obj = response[i];
           const ev = {
             title: obj.service,
             start: obj.appointment_time,
@@ -177,8 +183,8 @@ document.addEventListener("DOMContentLoaded", () => {
           serviceEvents.push(ev);
         }
         console.log("appointments", serviceEvents);
+        callback(serviceEvents);
       });
-      callback(serviceEvents);
     },
   });
   calendar.render();
