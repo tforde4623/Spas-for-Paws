@@ -12,7 +12,7 @@ module.exports = function(app) {
     // Sending back a password, even a hashed password, isn't a good idea
     res.json({
       email: req.user.email,
-      id: req.user.id,
+      id: req.user.id
     });
   });
 
@@ -25,12 +25,12 @@ module.exports = function(app) {
       first_name: req.body.firstName,
       last_name: req.body.lastName,
       email: req.body.email,
-      password: req.body.password,
+      password: req.body.password
     })
       .then(() => {
         res.redirect(307, "/api/login");
       })
-      .catch((err) => {
+      .catch(err => {
         res.status(401).json(err);
       });
   });
@@ -54,19 +54,19 @@ module.exports = function(app) {
         first_name: req.user.first_name,
         last_name: req.user.last_name,
         email: req.user.email,
-        id: req.user.id,
+        id: req.user.id
       });
     }
   });
 
   // get req to get all services
   app.get("/api/services", (req, res) => {
-    db.Services.findAll({}).then((response) => res.json(response));
+    db.Services.findAll({}).then(response => res.json(response));
   });
 
   // get all appointments for calender rendering -updated
   app.get("/api/appointments", (req, res) => {
-    db.Appointments.findAll({}).then((response) => res.json(response));
+    db.Appointments.findAll({}).then(response => res.json(response));
   });
 
   // post a new appointment - updated
@@ -77,8 +77,8 @@ module.exports = function(app) {
       // eslint-disable-next-line camelcase
       appointment_time: req.body.appointment_time,
       animal: req.body.animal,
-      service: req.body.service,
-    }).then((response) => res.json(response.id));
+      service: req.body.service
+    }).then(response => res.json(response.id));
   });
 
   // update an appointment
@@ -86,22 +86,22 @@ module.exports = function(app) {
     db.Appointments.update(
       {
         // eslint-disable-next-line camelcase
-        appointment_time: req.body.appointment_time,
+        appointment_time: req.body.appointment_time
       },
       {
         where: {
-          id: req.body.id,
-        },
+          id: req.body.id
+        }
       }
-    ).then((post) => res.json(post));
+    ).then(post => res.json(post));
   });
 
   // delete an appointment (could change id to time, depending on if we have the id available)
   app.delete("/api/appointments/:id", (req, res) => {
     db.Appointments.destroy({
       where: {
-        id: req.params.id,
-      },
-    }).then((response) => res.json(response));
+        id: req.params.id
+      }
+    }).then(response => res.json(response));
   });
 };

@@ -106,7 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     eventDrop: function(info) {
       console.log(currentUser, info.event.extendedProps.userEmail);
-      if (currentUser != info.event.extendedProps.userEmail) {
+      if (currentUser !== info.event.extendedProps.userEmail) {
         alert("You may only modify your own appointments.");
         info.revert();
         return;
