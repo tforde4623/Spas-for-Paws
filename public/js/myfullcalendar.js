@@ -164,11 +164,11 @@ document.addEventListener("DOMContentLoaded", () => {
     events: function(serviceEvents, callback) {
       //add call to backend mysql database for saved appointments
       $.get("/api/appointments", (data) => {
-        let serviceEvents = [];
+        const serviceEvents = [];
         console.log("appointments", data);
         for (let i = 0; i < data.length; i++) {
-          let obj = data[i];
-          let ev = {
+          const obj = data[i];
+          const ev = {
             title: obj.service,
             start: obj.appointment_time,
             overlap: false,
