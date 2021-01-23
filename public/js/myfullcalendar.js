@@ -91,8 +91,12 @@ document.addEventListener("DOMContentLoaded", () => {
     editable: true,
     droppable: true, // this allows things to be dropped onto the calendar
     eventClick: function(arg) {
+      if (currentUser !== arg.event.extendedProps.userEmail) {
+        alert("You may only delete your own appointments.");
+        arg.revert();
+        return;
+      }
       if (confirm("Are you sure you want to delete this event?")) {
-        console.log("delete me", arg.event);
         if (arg.event.extendedProps.apptId > 0) {
           $.ajax({
             method: "DELETE",
@@ -105,7 +109,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     },
     eventDrop: function(info) {
-      console.log(currentUser, info.event.extendedProps.userEmail);
       if (currentUser !== info.event.extendedProps.userEmail) {
         alert("You may only modify your own appointments.");
         info.revert();
@@ -194,7 +197,7 @@ document.addEventListener("DOMContentLoaded", () => {
         for (let i = 0; i < response.length; i++) {
           const obj = response[i];
           const ev = {
-            title: obj.service,
+            title: obj.service + " (" + obj.email.split("@")[0] + ")",
             start: obj.appointment_time,
             overlap: false,
             constraint: "businessHours",
@@ -203,9 +206,8 @@ document.addEventListener("DOMContentLoaded", () => {
               userEmail: obj.email,
             },
           };
-          if (ev.userEmail === currentUser) {
-            ev.backgroundColor = "green";
-          }
+          console.log("comp emails", ev.extendedProps.userEmail, currentUser);
+
           serviceEvents.push(ev);
         }
         console.log("appointments", serviceEvents);

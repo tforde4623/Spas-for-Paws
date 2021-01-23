@@ -85,6 +85,13 @@ div.rightalign {
   max-width: 100%;
   word-wrap: break-word;
 }
+.fc-event-time {
+  text-align: center;
+  font-size: 12px;
+  font-family: "Pathway Gothic One", sans-serif;
+  max-width: 100%;
+  word-wrap: break-word;
+}
 
 .fc-h-event {
   margin-top: 5px;
