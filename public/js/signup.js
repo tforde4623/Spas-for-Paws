@@ -40,7 +40,11 @@ $(document).ready(() => {
   }
 
   function handleLoginErr(err) {
-    $("#alert .msg").text(err.responseJSON);
+    const errMsg =
+      err.responseJSON.name === "SequelizeUniqueConstraintError"
+        ? "Account already exists."
+        : "Registration failed!";
+    $("#alert .msg").text(errMsg);
     $("#alert").fadeIn(500);
   }
 });
