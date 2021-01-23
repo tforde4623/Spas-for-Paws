@@ -1,4 +1,5 @@
 body {
+  min-height: 100vh;
   margin: 40px 10px;
   padding: 0;
   font-size: 14px;
@@ -11,20 +12,23 @@ body {
 }
 
 #pet-services {
-position: absolute;
+  position: absolute;
   left: 20px;
-  top: 100px;
-  width: 150px;
+  top: 150px;
+  width: 180px;
   padding: 0 10px;
   border: 1px solid #ccc;
   background: #eee;
   text-align: left;
+  overflow-y: scroll;
+  max-height: 600px;
 }
 
 #pet-services h4 {
   font-size: 16px;
   text-align: center;
   font-family: "Pathway Gothic One", sans-serif;
+  font-weight: bold;
   margin-top: 0;
   padding-top: 1em;
 }
@@ -64,6 +68,10 @@ div.rightalign {
   max-width: 100%;
 }
 
+.card-body {
+  padding: 5px;
+}
+
 .card-text {
   white-space: pre-wrap;
   overflow: hidden;
@@ -76,4 +84,9 @@ div.rightalign {
   font-family: "Pathway Gothic One", sans-serif;
   max-width: 100%;
   word-wrap: break-word;
+}
+
+.fc-h-event {
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
