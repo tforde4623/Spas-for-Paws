@@ -19,9 +19,10 @@ module.exports = function(app) {
   // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
   // otherwise send back an error - updated
   app.post("/api/signup", (req, res) => {
+    console.log(req.body);
     db.User.create({
-      first_name: req.body.first_name,
-      last_name: req.body.last_name,
+      first_name: req.body.firstName,
+      last_name: req.body.lastName,
       email: req.body.email,
       password: req.body.password
     })
@@ -85,5 +86,14 @@ module.exports = function(app) {
         id: req.body.id
       }
     }).then(post => res.json(post));
+  });
+
+  // delete an appointment (could change id to time, depending on if we have the id available)
+  app.delete("/api/appointments/:id", (req, res) => {
+    db.Appointments.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(response => res.json(response));
   });
 };
