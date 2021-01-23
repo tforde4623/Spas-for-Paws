@@ -1,44 +1,37 @@
+<div class="container-fluid">
 
- <div class="container-fluid">
-    <div class="row col-12">
-      <div class="card">
-        <div class="card-body">
-          You can make your appointments below
-        </div>
-      </div>
-    </div>
-  </br>
-</div>
-
-<div id='wrap'>
+  <div id='wrap'>
     <div id='pet-services'>
       <h4>Pet Grooming Services</h4>
       <div id='pet-services-list'>
-            {{#each dataIn}}
-                <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
-                  <div class='fc-event-main'><h6>{{this.title}}</h6></div>
-                  <div class="card" >
-                    <div class="card-body">
-                      <p class="card-text">{{this.description}}</p>
-                    </div>
-                  </div>
-                </div>
-            {{/each}}
+        {{#each dataIn}}
+        <div class='fc-h-event fc-daygrid-event fc-daygrid-block-event'>
+          <div  class='fc-event-main fc-event '>{{this.title}}</div>
+          <div class="card">
+            <div class="card-body">
+              <div class="card-text evDesc ">{{this.description}}</div>
+              <div class="animal" hidden>{{this.animal}}</div>
+            </div>
+          </div>
+        </div>
+        {{/each}}
       </div>
     </div>
-
     <div id='calendar-wrap'>
+      <div class="row col-12">
+        <div class="card">
+          <div class="card-body">
+            You can make your appointments below
+          </div>
+        </div>
+      </div>
       <div id='calendar'></div>
     </div>
-
   </div>
-<div></div>
-      <footer>
-        <div class="card">
-            <div class="col" id="copyright"> <strong>&#169; Copyright 2021 Spas4Paws</strong></div>
-          </div>
-      </footer>
-
-	<script src="/js/myfullcalendar.js"></script>
+ 
 
 
+
+ 
+
+  <script src="/js/myfullcalendar.js"></script>
