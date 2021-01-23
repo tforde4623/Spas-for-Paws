@@ -1,6 +1,6 @@
 body {
   min-height: 100vh;
-  margin: 40px 10px;
+  margin: 0px;
   padding: 0;
   font-size: 14px;
   font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
@@ -17,7 +17,7 @@ body {
   top: 150px;
   width: 180px;
   padding: 0 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #000000 !important;
   background: #eee;
   text-align: left;
   overflow-y: scroll;
@@ -25,7 +25,7 @@ body {
 }
 
 #pet-services h4 {
-  font-size: 16px;
+  font-size: 20px;
   text-align: center;
   font-family: "Pathway Gothic One", sans-serif;
   font-weight: bold;
@@ -36,17 +36,23 @@ body {
 #pet-services .fc-event {
   margin: 3px 0;
   cursor: move;
+  background-color: #ffbd59 !important;
+  color: #000000 !important;
 }
 
 #pet-services p {
   margin: 1.5em 0;
   font-size: 11px;
-  color: #666;
 }
 
 #pet-services p input {
   margin: 0;
   vertical-align: middle;
+}
+
+#pet-services .fc-daygrid-block-event {
+  background-color: #ffbd59 !important;
+  border: none !important;
 }
 
 #calendar-wrap {
@@ -66,6 +72,12 @@ div.rightalign {
 
 .card {
   max-width: 100%;
+  border: none;
+}
+
+.card-body {
+  padding: 5px;
+  text-align: center;
 }
 
 .card-body {
@@ -96,4 +108,53 @@ div.rightalign {
 .fc-h-event {
   margin-top: 5px;
   margin-bottom: 5px;
+}
+
+.col-6 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+  border: none;
+}
+
+.appointmentImage {
+  max-width: 100%;
+  width: auto;
+  max-height: 100px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.fc-view {
+  font-family: "Pathway Gothic One", sans-serif;
+  font-size: 20px !important;
+}
+
+.fc-button-primary {
+  background-color: #ffbd59 !important;
+  color: #000000 !important;
+  font-family: "Pathway Gothic One", sans-serif !important;
+  font-size: 20px !important;
+}
+
+.fc-col-header-cell-cushion {
+  color: #000000 !important;
+  text-decoration: none !important;
+}
+
+.fc-toolbar-title {
+  font-size: 35px !important;
+}
+
+.fc-event-time,
+.fc-sticky,
+.fc-event-title-container,
+.fc-event-main {
+  color: #000000 !important;
+  background-color: #ffbd59 !important;
+  border: none !important;
 }
