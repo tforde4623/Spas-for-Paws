@@ -1,35 +1,74 @@
+<br>
 <div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-3">
+          <div id='pet-services'>
+            <h4>Pet Grooming Services</h4>
 
-  <div id='wrap'>
-    <div id='pet-services'>
-      <h4>Pet Grooming Services</h4>
-      <div id='pet-services-list'>
-        {{#each dataIn}}
-        <div class='fc-h-event fc-daygrid-event fc-daygrid-block-event'>
-          <div class='fc-event-main fc-event '>{{this.title}}</div>
-          <div class="card">
-            <div class="card-body">
-              <div class="card-text evDesc ">{{this.description}}</div>
-              <div class="animal" hidden>{{this.animal}}</div>
+            <div id='pet-services-list'>
+              <button id="dogService" type="button" class="btn btn-secondary">Dog Services</button>
+              <div id="dog-services"> 
+                {{#each dataIn}}
+                  {{#if isDog}}
+                    <div class='fc-h-event fc-daygrid-event fc-daygrid-block-event'>
+                      <div class='fc-event-main fc-event '>{{this.title}}</div>
+                      <div class="card">
+                        <div class="card-body">
+                          <div class="card-text evDesc ">{{this.description}}</div>
+                        </div>
+                      </div>
+                    </div>
+                  {{/if}}
+                {{/each}}
+              </div>
+              <button id="catService" type="button" class="btn btn-secondary">Cat Services</button>
+              <div id="cat-services">
+                {{#each dataIn}}
+                  {{#if isCat}}
+                    <div class='fc-h-event fc-daygrid-event fc-daygrid-block-event'>
+                      <div class='fc-event-main fc-event '>{{this.title}}</div>
+                      <div class="card">
+                        <div class="card-body">
+                          <div class="card-text evDesc ">{{this.description}}</div>
+                        </div>
+                      </div>
+                    </div>
+                  {{/if}}
+                {{/each}}
+              </div>
+              <button id="rabbitService" type="button" class="btn btn-secondary">Rabbit Services</button>
+              <div id="rabbit-services">
+                {{#each dataIn}}
+                  {{#if isRabbit}}
+                    <div class='fc-h-event fc-daygrid-event fc-daygrid-block-event'>
+                      <div class='fc-event-main fc-event '>{{this.title}}</div>
+                      <div class="card">
+                        <div class="card-body">
+                          <div class="card-text evDesc ">{{this.description}}</div>
+                        </div>
+                      </div>
+                    </div>
+                  {{/if}}
+                {{/each}}
+              </div>
             </div>
           </div>
         </div>
-        {{/each}}
-      </div>
-    </div>
-    <div id='calendar-wrap'>
-      <div class="row col-6">
-        <div class="card">
-          <div class="card-body-title">
-            <img class="appointmentImage" src="images/appointment-header.png"
-              alt="Header stating that a user can make appointments below">
-          </div>
+        <div class="col-md-9">
+          <div id='calendar-wrap'>
+            <div class="row col-12">
+                  <img class="appointmentImage" src="images/appointment-header.png"
+                      alt="Header stating that a user can make appointments below">
+              </div>
+              <div class="row col-12">
+                <div id='calendar'></div>
+              </div>
+            </div>
         </div>
       </div>
-
-      <div id='calendar'></div>
     </div>
   </div>
-
-
+</div>
   <script src="/js/myfullcalendar.js"></script>
