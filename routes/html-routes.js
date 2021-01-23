@@ -12,15 +12,25 @@ module.exports = function (app) {
   //   res.sendFile(path.join(__dirname, "../public/signup.html"));
   // });
 
+  // index/home page route
   app.get("/", res => {
+    // replace with render
     res.sendFile(path.join(__dirname, "../public/index.html"));
   });
 
+  // register page route
+  app.get("/register", (req, res) => {
+    // replace with render
+    res.sendFile(path.join(__dirname, "../public/register.html"));
+  });
+
+  // login page route
   app.get("/login", (req, res) => {
     // If the user already has an account send them to the members page
     if (req.user) {
-      res.redirect("/members");
+      res.redirect("/");
     }
+    // replace with render
     res.sendFile(path.join(__dirname, "../public/login.html"));
   });
 
@@ -30,7 +40,7 @@ module.exports = function (app) {
   //   res.sendFile(path.join(__dirname, "../public/members.html"));
   // });
 
-  app.get("/calender", checkAuthentication, (req,res) => {
+  app.get("/calendar", checkAuthentication, (req,res) => {
     //render calendar page via handlebars IF logged in
     res.render("calendar", { dataIn: serviceData });
   });
