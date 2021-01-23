@@ -11,7 +11,7 @@ body {
 }
 
 #pet-services {
-  position: absolute;
+position: absolute;
   left: 20px;
   top: 100px;
   width: 150px;
