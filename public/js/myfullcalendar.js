@@ -1,4 +1,15 @@
 /* eslint-disable prettier/prettier */
+$(document).ready(() => {
+  $("#dogService").click(() => {
+    $("#dog-services").toggle();
+  });
+  $("#catService").click(() => {
+    $("#cat-services").toggle();
+  });
+  $("#rabbitService").click(() => {
+    $("#rabbit-services").toggle();
+  });
+});
 
 document.addEventListener("DOMContentLoaded", () => {
   /* initialize the external events
@@ -7,7 +18,6 @@ document.addEventListener("DOMContentLoaded", () => {
   new FullCalendar.Draggable(containerEl, {
     itemSelector: ".fc-event",
     eventData: function(eventEl) {
-      console.log(eventEl);
       return {
         // eslint-disable-next-line prettier/prettier
         title: eventEl.innerText.trim(),
@@ -120,75 +130,48 @@ document.addEventListener("DOMContentLoaded", () => {
         info.revert();
         return;
       }
-      if (
-        !confirm(
-          "You are updating your appointment for " +
-            info.event.title +
-            "!\n Please confirm " +
-            formatDate(info.event.start) +
-            " as new time slot."
-        )
-      ) {
-        info.revert();
-      } else {
-        //save to database
-        // eslint-disable-next-line vars-on-top
-        // eslint-disable-next-line no-var
-        console.log("eventDragStop", info.event, info.eventData);
-        const newAppt = {
-          id: info.event.extendedProps.apptId,
-          // eslint-disable-next-line camelcase
-          appointment_time: info.event.start.toISOString(),
-        };
-        if (info.event.extendedProps.apptId > 0) {
-          // Send the update POST request.
-          $.ajax("/api/appointments/", {
-            type: "PUT",
-            data: newAppt,
-          }).then(() => {
-            console.log("updated appointment", newAppt, info.event);
-            // Reload the page to get the updated list
-            //location.reload();
-          });
-        }
+      //save to database
+      // eslint-disable-next-line vars-on-top
+      // eslint-disable-next-line no-var
+      const newAppt = {
+        id: info.event.extendedProps.apptId,
+        // eslint-disable-next-line camelcase
+        appointment_time: info.event.start.toISOString(),
+      };
+      if (info.event.extendedProps.apptId > 0) {
+        // Send the update POST request.
+        $.ajax("/api/appointments/", {
+          type: "PUT",
+          data: newAppt,
+        }).then(() => {
+          console.log("updated appointment", newAppt);
+          // Reload the page to get the updated list
+          //location.reload();
+        });
       }
     },
     eventReceive: function(info) {
-      if (
-        !confirm(
-          "Thank you for scheduling " +
-            info.event.title +
-            "!\n Please confirm " +
-            formatDate(info.event.start) +
-            " time slot."
-        )
-      ) {
-        info.revert();
-      } else {
-        //save to database
-        console.log("eventReceive", info.event, info.eventData);
+      //save to database
+      // eslint-disable-next-line vars-on-top
+      // eslint-disable-next-line no-var
+      const newAppt = {
+        email: currentUser,
+        // eslint-disable-next-line camelcase
+        appointment_time: info.event.start.toISOString(),
+        animal: "Dog",
+        service: info.event.title,
+      };
 
-        // eslint-disable-next-line vars-on-top
-        // eslint-disable-next-line no-var
-        const newAppt = {
-          email: currentUser,
-          // eslint-disable-next-line camelcase
-          appointment_time: info.event.start.toISOString(),
-          animal: "Dog",
-          service: info.event.title,
-        };
-
-        // Send the POST request.
-        $.ajax("/api/appointments", {
-          type: "POST",
-          data: newAppt,
-        }).then((response) => {
-          console.log("created new appointment", newAppt, response);
-          info.event.extendedProps.apptId = response;
-          // Reload the page to get the updated list
-          location.reload();
-        });
-      }
+      // Send the POST request.
+      $.ajax("/api/appointments", {
+        type: "POST",
+        data: newAppt,
+      }).then((response) => {
+        console.log("created new appointment", newAppt);
+        info.event.extendedProps.apptId = response;
+        // Reload the page to get the updated list
+        location.reload();
+      });
     },
     events: function(serviceEvents, callback) {
       //add call to backend mysql database for saved appointments
@@ -196,10 +179,8 @@ document.addEventListener("DOMContentLoaded", () => {
         url: "/api/appointments",
         method: "GET",
       }).then((response) => {
-        console.log(response);
         // eslint-disable-next-line prefer-const
         let serviceEvents = [];
-        console.log("appointments", response);
         for (let i = 0; i < response.length; i++) {
           const obj = response[i];
           const ev = {
@@ -212,11 +193,9 @@ document.addEventListener("DOMContentLoaded", () => {
               userEmail: obj.email,
             },
           };
-          console.log("comp emails", ev.extendedProps.userEmail, currentUser);
 
           serviceEvents.push(ev);
         }
-        console.log("appointments", serviceEvents);
         callback(serviceEvents);
       });
     },

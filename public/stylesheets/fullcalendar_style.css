@@ -6,22 +6,18 @@ body {
   font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
 }
 
-.container-fluid {
+/* .container-fluid {
   margin-top: 20px;
   margin-bottom: 30px;
-}
+} */
 
 #pet-services {
-  position: absolute;
-  left: 20px;
-  top: 150px;
-  width: 180px;
   padding: 0 10px;
   border: 1px solid #000000 !important;
   background: #eee;
   text-align: left;
   overflow-y: scroll;
-  max-height: 600px;
+  max-height: 700px;
 }
 
 #pet-services h4 {
@@ -55,7 +51,7 @@ body {
   border: none !important;
 }
 
-#calendar-wrap {
+/* #calendar-wrap {
   margin-left: 200px;
   margin-right: 15px;
   margin-bottom: 15px;
@@ -64,7 +60,7 @@ body {
 #calendar {
   max-width: 1100px;
   margin: 0 auto;
-}
+} */
 
 div.rightalign {
   text-align: right;
@@ -110,21 +106,22 @@ div.rightalign {
   margin-bottom: 5px;
 }
 
-.col-6 {
+/* .col-6 {
   display: block;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 20px;
   border: none;
-}
+} */
 
 .appointmentImage {
   max-width: 100%;
   width: auto;
+  height: auto;
   max-height: 100px;
   display: block;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 10px;
+  margin-right: 10px;
   margin-top: 10px;
   margin-bottom: 10px;
 }
@@ -158,7 +155,24 @@ div.rightalign {
   background-color: #ffbd59 !important;
   border: none !important;
 }
+
+.fc-event-time {
+  display: none;
+}
+
 .modal-card-head,
 .modal-card-foot {
   background-color: #ffbd59;
+}
+
+#dog-services,
+#cat-services,
+#rabbit-services {
+  display: none;
+}
+
+.btn-secondary {
+  width: 180px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
