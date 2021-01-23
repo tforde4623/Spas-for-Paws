@@ -27,6 +27,12 @@ document.addEventListener("DOMContentLoaded", () => {
     currentUser = data.email;
   });
 
+  function toggleModal(displayMessage) {
+    $("#msgModal").text(displayMessage);
+    const modal = $("#msgModal");
+    modal.addClass("is-active");
+  }
+
   function formatDate(date) {
     let hours = date.getHours();
     let minutes = date.getMinutes();
@@ -92,7 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
     droppable: true, // this allows things to be dropped onto the calendar
     eventClick: function(arg) {
       if (currentUser !== arg.event.extendedProps.userEmail) {
-        alert("You may only delete your own appointments.");
+        toggleModal("You may only delete your own appointments.");
         arg.revert();
         return;
       }
@@ -110,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     eventDrop: function(info) {
       if (currentUser !== info.event.extendedProps.userEmail) {
-        alert("You may only modify your own appointments.");
+        toggleModal("You may only modify your own appointments.");
         info.revert();
         return;
       }
