@@ -9,7 +9,7 @@ Appointment scheduler for your pet's grooming needs. Utilizing passport authenti
 ### Table of Contents
 
 - [Overview](#Overview)
-- [Implementation](#Implementation)
+- [Demo](#Demo)
 - [Prerequisites](#Prerequisites)
 - [Usage](#usage)
 - [Installation](#Installation)
