@@ -27,9 +27,9 @@ Appointment scheduler for your pet's grooming needs. Utilizing passport authenti
 
 ### Usage
 
-In mySQL workbench, setup the database using schema.sql.
-In VS Code terminal, install the npm dependencies, then use <i>node server.js</i> to run the app in the terminal.
-In a browser, navigate to http://localhost:8080/ to view the site.
+In mySQL workbench, setup the database using schema.sql.<br />
+In VS Code terminal, install the npm dependencies, then use <i>node server.js</i> to run the app in the terminal.<br />
+In a browser, navigate to http://localhost:8080/ to view the site.<br />
 
 ### Installation
 
