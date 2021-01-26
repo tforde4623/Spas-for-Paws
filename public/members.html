@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
@@ -20,7 +18,7 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
 
-    <title>Spas for Paws | Pet Grooming Services</title>
+    <title>Spas for Paws | Member Home Page</title>
 </head>
 
 <body>
@@ -39,10 +37,10 @@
             <nav class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li class="nav-item">
-                    <a class="nav-link" href="/register"><h5 class="nav-button">Register</h5></a>
-                    </li>
+                    <a class="nav-link" href="/calendar"><h5 class="nav-button">Calendar</h5></a> </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="/login"><h5 class="nav-button">Login</h5></a>
+                    <a class="nav-link" href="/logout"><h5 class="nav-button">Logout</h5></a>
+                    </li>
                 </ul>              
             </nav>
         </nav>
@@ -52,8 +50,8 @@
     <div class="container">
 
         <div class="row col-12">
-            <div class="card">
-                <div class="card-header">Welcome!</div>
+            <div class="card-welcome">
+                <div class="card-header">Welcome<span id="welcome"></span>!</div>
                     <div class="card-body"> 
                         <img class="logoImageCenter" src="images/edited-main-logo.png"
                         alt="Spas for Paws Main Logo with a Dog, Cat, and Rabbit">
@@ -89,7 +87,7 @@
                             Bathing, Haircuts, Nail Trimming, and More.
                         </p>  
                         <img class="services-img" src="images/services.png" alt="Six images of animals and grooming services">              
-                        <button class="w-100 mt-3 btn btn-lg btn-primary" type="submit" id="button"> <a href="/calendar" id="book">Book An Appointment! </a></button>
+                        <button class="w-100 mt-3 btn btn-lg btn-primary" type="submit" id="button"> <a href="/calendar" id="book">Book An Appointment!</a></button>
                     </div>
                 </div>
             </div>
@@ -112,5 +110,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
+    <!-- External JS Sheet for Members -->
+    <script type="text/javascript" src="js/members.js"></script>
+
 </body>
+
 </html>
