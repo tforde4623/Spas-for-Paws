@@ -3,14 +3,6 @@
 const path = require("path");
 
 module.exports = function(app) {
-  // can use some of this login for checking if logged in
-  // app.get("/", (req, res) => {
-  //   // If the user already has an account send them to the members page
-  //   if (req.user) {
-  //     res.redirect("/members");
-  //   }
-  //   res.sendFile(path.join(__dirname, "../public/signup.html"));
-  // });
 
   // index/home page route
   app.get("/", (res) => {
@@ -42,10 +34,6 @@ module.exports = function(app) {
 
   // Here we've add our isAuthenticated middleware to this route.
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
-  // app.get("/members", isAuthenticated, res => {
-  //   res.sendFile(path.join(__dirname, "../public/members.html"));
-  // });
-
   app.get("/calendar", checkAuthentication, (req, res) => {
     //render calendar page via handlebars IF logged in
     res.render("calendar", { dataIn: serviceData });

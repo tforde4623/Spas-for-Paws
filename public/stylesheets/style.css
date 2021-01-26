@@ -1,4 +1,4 @@
-/* Styling for All Pages: Navigation Bar */
+/* Styling for Navigation Bar */
 .navbar-light {
   background-color: #ffbd59;
 }
@@ -15,6 +15,21 @@
 
 h5 {
   color: #000000;
+}
+
+/* Styling for Index/Home and Members Pages */
+.card-header {
+  text-align: center;
+  font-size: 50px;
+  font-weight: bold;
+  font-family: "Pathway Gothic One", sans-serif;
+  padding: 0px;
+  background-color: #ffffff;
+  border: none;
+}
+
+.card-welcome {
+  border: none;
 }
 
 .services-header {
@@ -40,63 +55,12 @@ h5 {
   height: auto;
 }
 
-.card-header {
-  text-align: center;
-  font-size: 50px;
-  font-weight: bold;
-  font-family: "Pathway Gothic One", sans-serif;
-  padding: 0px;
-  background-color: #ffffff;
-  border: none;
-}
-
-.card-welcome {
-  border: none;
-}
-
-.col-md-offset-3 {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-h2 {
-  text-align: center;
-  font-family: "Pathway Gothic One", sans-serif;
-  font-size: 40px;
-}
-
-.form-group {
-  margin: 30px;
-}
-
 .btn-primary {
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
 
-#copyright {
-  text-align: center;
-  font-family: "Pathway Gothic One", sans-serif;
-}
-
-.account {
-  text-align: center;
-}
-
-#book {
-  color: black;
-  font-family: "Pathway Gothic One", sans-serif;
-  text-decoration: none;
-}
-
-.card-footer {
-  border: none;
-  background-color: #ffffff;
-}
-
-/* Styling for Home Page */
 .mainDescription {
   text-align: center;
   font-family: "Pathway Gothic One", sans-serif;
@@ -114,7 +78,28 @@ h2 {
   border-color: #ffbd59 !important;
 }
 
+#book {
+  color: black;
+  font-family: "Pathway Gothic One", sans-serif;
+  text-decoration: none;
+}
+
 /* Styling for Registration and Login Pages */
+.col-md-offset-3 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h2 {
+  text-align: center;
+  font-family: "Pathway Gothic One", sans-serif;
+  font-size: 40px;
+}
+
+.form-group {
+  margin: 30px;
+}
 
 #firstname-input,
 #lastname-input,
@@ -133,4 +118,19 @@ h2 {
 .card-login {
   border: none;
   margin-top: 20px;
+}
+
+.account {
+  text-align: center;
+}
+
+/* Styling for Footer */
+#copyright {
+  text-align: center;
+  font-family: "Pathway Gothic One", sans-serif;
+}
+
+.card-footer {
+  border: none;
+  background-color: #ffffff;
 }
