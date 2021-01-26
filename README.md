@@ -21,45 +21,53 @@
     <img src="https://img.shields.io/github/last-commit/tforde4623/Spas-for-Paws" >
 </p>
 
-### Overview 🔍
-Appointment scheduler for your pet's grooming needs. Utilizing passport authentication, FullCalendar for drag and drop services planner, sequelize ORM, express handlebars layouts and more.
+### Overview
+🔍<br />
+Appointment scheduler for your pet's grooming needs. Utilizing passport authentication, FullCalendar for drag and drop services planner, sequelize ORM, express handlebars layouts and more. 
 
-### Table of Contents 📑
+### Table of Contents
+📑<br />
 - [Overview](#Overview)
 - [Demo](#Demo)
 - [Prerequisites](#Prerequisites)
-- [Usage](#usage)
+- [Usage](#Usage)
 - [Installation](#Installation)
 - [Contribution](#Contribution)
-- [License](#license)
+- [License](#License)
 
-### Demo 🎥
-<img src="public\assets\img\paws.gif" width="600"><br />
+### Demo
+🎥<br /> 
 [Spas For Paws Live Link](https://spas-for-paws.herokuapp.com/)
+<img src="public\assets\img\paws.gif" width="1000"><br />
 
-### Prerequisites 🔨
+### Prerequisites 
+🔨<br />
   1. mySQL work bench
   2. VS Code
   3. npm packages: bcryptjs, express, express-handlebars, express-session, mysql2, passport, passport-local, sequelize.
 
-### Usage 💻
+### Usage
+💻<br />
 In mySQL workbench, setup the database using schema.sql.<br />
 In VS Code terminal, install the npm dependencies, then use <i>node server.js</i> to run the app in the terminal.<br />
 In a browser, navigate to http://localhost:8080/ to view the site.<br />
 
-### Installation 💾 
+### Installation
+💾<br />
 ```
 npm i bcryptjs express express-handlebars express-session mysql2 passport passport-local sequelize
 ```
 
-### Contribution ✏️
+### Contribution
+✏️<br />
 https://github.com/bvargas17<br />
 https://github.com/kaidong-chr<br />
 https://github.com/mkindler<br />
 https://github.com/smaryroy<br />
 https://github.com/tforde4623<br />
 
-### License 📘
+### License
+📘<br />
 ```
 MIT License
 Copyright (c) [2021] [Spas For Paws]
