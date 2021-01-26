@@ -28,7 +28,7 @@ $(document).ready(() => {
     passwordInput.val("");
   });
 
-  // Does a post to the signup route. If successful, we are redirected to the members page with a "Welcome, (User)!" message
+  // Does a post to the signup route. If successful, we are redirected to the members page with a "Welcome, (First Name) (Last Name)!" message
   // Otherwise we log any errors
   function signUpUser(data) {
     $.post("/api/signup", data)
