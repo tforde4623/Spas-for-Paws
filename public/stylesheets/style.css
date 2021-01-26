@@ -1,9 +1,16 @@
+/* Styling for All Pages: Navigation Bar */
 .navbar-light {
   background-color: #ffbd59;
 }
 
 .navbar-brand {
   margin-left: 10px;
+}
+
+.nav-button {
+  color: black;
+  font-family: "Pathway Gothic One", sans-serif;
+  font-size: 30px;
 }
 
 h5 {
@@ -33,23 +40,14 @@ h5 {
   height: auto;
 }
 
-#navBar {
-  background-color: #ffbd59;
-}
-
-h5 {
-  color: black;
-  font-family: "Pathway Gothic One", sans-serif;
-  font-size: 30px;
-}
-
 .card-header {
   text-align: center;
   font-size: 50px;
   font-weight: bold;
   font-family: "Pathway Gothic One", sans-serif;
-  border: none;
   padding: 0px;
+  background-color: #ffffff;
+  border: none;
 }
 
 .card-welcome {
@@ -89,15 +87,13 @@ h2 {
 
 #book {
   color: black;
-  font-family: "Pathway-Gothic one", sans-serif;
-}
-
-#button {
-  background-color: #ffbd59;
+  font-family: "Pathway Gothic One", sans-serif;
+  text-decoration: none;
 }
 
 .card-footer {
   border: none;
+  background-color: #ffffff;
 }
 
 /* Styling for Home Page */
@@ -107,7 +103,10 @@ h2 {
   font-size: 25px;
 }
 
-.btn-primary {
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:focus {
   color: #000000;
   font-family: "Pathway Gothic One", sans-serif !important;
   font-size: 25px !important;

@@ -24,6 +24,12 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/register.html"));
   });
 
+  // members page route
+  app.get("/members", (req, res) => {
+    // replace with render
+    res.sendFile(path.join(__dirname, "../public/members.html"));  
+  });
+
   // login page route
   app.get("/login", (req, res) => {
     // If the user already has an account send them to the members page

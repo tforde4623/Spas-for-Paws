@@ -11,17 +11,19 @@ body {
   margin-bottom: 30px;
 } */
 
+/* Styling for Pet Grooming Services Options */
 #pet-services {
-  padding: 0 10px;
+  /* padding: 0 10px; */
   border: 1px solid #000000 !important;
-  background: #eee;
+  background: #ffffff;
   text-align: left;
   overflow-y: scroll;
   max-height: 700px;
+  margin-bottom: 30px;
 }
 
 #pet-services h4 {
-  font-size: 20px;
+  font-size: 25px;
   text-align: center;
   font-family: "Pathway Gothic One", sans-serif;
   font-weight: bold;
@@ -118,7 +120,6 @@ div.rightalign {
   max-width: 100%;
   width: auto;
   height: auto;
-  max-height: 100px;
   display: block;
   margin-left: 10px;
   margin-right: 10px;
@@ -135,7 +136,7 @@ div.rightalign {
   background-color: #ffbd59 !important;
   color: #000000 !important;
   font-family: "Pathway Gothic One", sans-serif !important;
-  font-size: 20px !important;
+  font-size: 15px !important;
 }
 
 .fc-col-header-cell-cushion {
@@ -160,6 +161,12 @@ div.rightalign {
   display: none;
 }
 
+.fc-list-day-text,
+.fc-list-day-side-text {
+  color: #000000;
+  text-decoration: none;
+}
+
 .modal-card-head,
 .modal-card-foot {
   background-color: #ffbd59;
@@ -171,8 +178,20 @@ div.rightalign {
   display: none;
 }
 
-.btn-secondary {
+.btn-secondary,
+.btn-secondary:active,
+.btn-secondary:focus,
+.btn-secondary:hover {
   width: 180px;
   margin-top: 10px;
   margin-bottom: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: "Pathway Gothic One", sans-serif;
+  font-size: 18px;
+  background-color: #ffbd59;
+  border-color: #000000;
+  color: #000000;
+  margin-bottom: 1em;
 }
