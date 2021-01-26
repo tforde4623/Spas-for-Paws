@@ -28,13 +28,13 @@ Appointment scheduler for your pet's grooming needs. Utilizing passport authenti
 - [Overview](#Overview)
 - [Demo](#Demo)
 - [Prerequisites](#Prerequisites)
-- [Usage](#usage)
+- [Usage](#Usage)
 - [Installation](#Installation)
 - [Contribution](#Contribution)
-- [License](#license)
+- [License](#License)
 
 ### Demo 🎥
-<img src="public\assets\img\paws.gif" width="900"><br />
+<img src="public\assets\img\paws.gif" width="1000"><br />
 [Spas For Paws Live Link](https://spas-for-paws.herokuapp.com/)
 
 ### Prerequisites 🔨
